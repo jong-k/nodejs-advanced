@@ -61,17 +61,21 @@ function App() {
     // 의존성 배열을 사용하지 않으면 data가 mount 최초 상태인 빈배열을 계속 가리키게 됨
   );
 
-  const onRemove = (id: number) => {
-    setData(data.filter((diary) => diary.id !== id));
-  };
+  const onRemove = useCallback((id: number) => {
+    // setdata 내부에서 data를 한번 전달하여 함수형 업데이트 형태로 바꿈
+    // 이렇게 안하면 의존성 배열에 data를 추가해야 함
+    setData((data) => data.filter((diary) => diary.id !== id));
+  }, []);
 
-  const onEdit = (id: number, newContent: string) => {
-    setData(
+  const onEdit = useCallback((id: number, newContent: string) => {
+    // setdata 내부에서 data를 한번 전달하여 함수형 업데이트 형태로 바꿈
+    // 이렇게 안하면 의존성 배열에 data를 추가해야 함
+    setData((data) =>
       data.map((diary) =>
         diary.id === id ? { ...diary, content: newContent } : diary,
       ),
     );
-  };
+  }, []);
 
   const getDiaryAnalysis = useMemo(() => {
     console.log("일기 분석 시작");

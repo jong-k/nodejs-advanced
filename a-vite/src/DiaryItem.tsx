@@ -1,8 +1,4 @@
-/*
-Date 객체에 .toLocaleString() 사용하면 한국어 표기법으로 시간 가공
-
- */
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import { DummyListType } from "./data/temp";
 
@@ -86,4 +82,9 @@ const DiaryItem = ({ diary, onRemove, onEdit }: PropType) => {
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
+
+/*
+Date 객체에 .toLocaleString() 사용하면 한국어 표기법으로 시간 가공
+
+ */

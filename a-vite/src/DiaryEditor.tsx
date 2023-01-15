@@ -11,10 +11,6 @@ const DiaryEditor = ({ onCreate }: PropType) => {
     emotion: 3,
   });
 
-  useEffect(() => {
-    console.log("DiaryEditor 렌더링");
-  });
-
   const authorInput = useRef<HTMLInputElement>(null);
   const contentInput = useRef<HTMLTextAreaElement>(null);
 
