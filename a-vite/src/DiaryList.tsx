@@ -1,19 +1,19 @@
+import { useContext } from "react";
+
 import DiaryItem from "./DiaryItem";
-import { DummyListType } from "./data/temp";
+import { DiaryStateContext, DiaryDispatchContext } from "./App";
 
-interface PropType {
-  diaryList: DummyListType[];
-  onRemove: (id: number) => void;
-  onEdit: (id: number, newContent: string) => void;
-}
+const DiaryList = () => {
+  const diaryList = useContext(DiaryStateContext);
+  const { onEdit, onRemove } = useContext(DiaryDispatchContext);
+  if (diaryList == null) throw new Error();
 
-const DiaryList = ({ diaryList, onRemove, onEdit }: PropType) => {
   return (
     <div className="DiaryList">
       <h2 className="DiaryHeader">일기 리스트</h2>
       <h4>{diaryList.length}개의 일기가 있습니다.</h4>
       <div>
-        {diaryList.map((diary: DummyListType) => (
+        {diaryList.map((diary) => (
           <DiaryItem
             key={diary.id}
             diary={diary}

@@ -1,10 +1,9 @@
-import React, { ChangeEvent, useState, useRef, useEffect } from "react";
+import React, { ChangeEvent, useState, useRef, useContext } from "react";
+import { DiaryDispatchContext } from "./App";
 
-interface PropType {
-  onCreate: (author: string, content: string, emotion: number) => void;
-}
+const DiaryEditor = () => {
+  const { onCreate } = useContext(DiaryDispatchContext);
 
-const DiaryEditor = ({ onCreate }: PropType) => {
   const [state, setState] = useState({
     author: "",
     content: "",
